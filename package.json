@@ -1,0 +1,69 @@
+{
+  "name": "react-logux",
+  "version": "0.0.0",
+  "description": "React container to subscribe Logux on component mount",
+  "keywords": [
+    "logux",
+    "client",
+    "react"
+  ],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "MIT",
+  "repository": "logux/react-logux",
+  "peerDependencies": {
+    "react": "^15.0.0"
+  },
+  "devDependencies": {
+    "docdash": "^0.4.0",
+    "eslint": "^4.6.0",
+    "eslint-config-logux": "^16.1.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-es5": "^1.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^20.0.4",
+    "jsdoc": "^3.5.4",
+    "lint-staged": "^4.0.4",
+    "logux-sync": "logux/logux-sync",
+    "pre-commit": "^1.2.2",
+    "react": "^15.6.1",
+    "rimraf": "^2.6.1",
+    "size-limit": "^0.10.0",
+    "yaspeller-ci": "^0.6.0"
+  },
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "spellcheck": "yarn docs && yaspeller-ci *.md docs/*.html",
+    "clean": "rimraf docs/ coverage/",
+    "lint": "eslint *.js test/{**/,}*.js",
+    "docs": "jsdoc --configure .jsdocrc *.js",
+    "test": "jest --coverage && yarn lint && size-limit && yarn spellcheck"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "statements": 100
+      }
+    }
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-logux/browser"
+  },
+  "size-limit": [
+    {
+      "path": "index.js",
+      "limit": "5 B"
+    }
+  ],
+  "lint-staged": {
+    "*.md": "yaspeller-ci",
+    "*.js": "eslint"
+  },
+  "pre-commit": [
+    "lint-staged"
+  ]
+}
