@@ -17,8 +17,8 @@ See also [Logux Status] for UX best practices.
        alt="Sponsored by Evil Martians" width="236" height="54">
 </a>
 
-### Install
+## Install
 
 ```sh
-npm install --save react-logux react-redux
+npm install --save react-logux
 ```
