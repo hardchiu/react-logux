@@ -1,5 +1,6 @@
+var subscribe = require('../subscribe')
 var index = require('../')
 
-it('is empty', function () {
-  expect(index).toEqual({ })
+it('has subscribe', function () {
+  expect(index.subscribe).toBe(subscribe)
 })
