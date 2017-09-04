@@ -27,7 +27,7 @@ npm install --save react-logux
 
 First, you need to create Logux client by [Logux Redux], wrap your
 application into `<Provider>` from [React Redux]
-and start Logux Redux connection.
+and start Logux Redux connection.
 
 With React Logux you can wrap your components in `subscribe` decorator.
 As result, when they will automatically subscribe to data on mount
@@ -48,9 +48,11 @@ module.exports = subscribe(({ id }) => {
 })(User)
 ```
 
-In this example, `<User id="10">` will send
-`{ type: 'logux/subscribe', name: 'users/10', fields: ['name', 'photo'] }`
-action to server.
+In this example, `<User id="10" />` will send this action to server:
+
+```js
+{ type: 'logux/subscribe', name: 'users/10', fields: ['name', 'photo'] }
+```
 
 If you need to define only `name` parameters, you can use shortcut:
 
