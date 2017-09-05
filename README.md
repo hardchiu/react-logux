@@ -3,7 +3,9 @@
 <img align="right" width="95" height="95" title="Logux logo"
      src="https://cdn.rawgit.com/logux/logux/master/logo.svg">
 
-React container to subscribe Logux on component mount.
+Logux is a client-server communication protocol. It synchronizes action between clients and server logs.
+
+This React library contains decorator to subscribe Logux on component mount.
 
 Use it with [React Redux] and [Logux Redux].
 See also [Logux Status] for UX best practices.

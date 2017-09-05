@@ -1,11 +1,12 @@
 {
   "name": "react-logux",
   "version": "0.0.0",
-  "description": "React container to subscribe Logux on component mount",
+  "description": "Decorator to subscribe Logux on component mount",
   "keywords": [
     "logux",
     "client",
-    "react"
+    "react",
+    "subscribe"
   ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
