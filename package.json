@@ -1,7 +1,7 @@
 {
   "name": "react-logux",
   "version": "0.0.0",
-  "description": "Decorator to subscribe Logux on component mount",
+  "description": "React decorator to subscribe Logux on component mount",
   "keywords": [
     "logux",
     "client",
