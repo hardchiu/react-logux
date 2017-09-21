@@ -46,17 +46,17 @@ class User extends React.Component {
 }
 
 module.exports = subscribe(({ id }) => {
-  return { name: `users/${ id }`, fields: ['name', 'photo'] }
+  return { channel: `users/${ id }`, fields: ['name', 'photo'] }
 })(User)
 ```
 
 In this example, `<User id="10" />` will send this action to server:
 
 ```js
-{ type: 'logux/subscribe', name: 'users/10', fields: ['name', 'photo'] }
+{ type: 'logux/subscribe', channel: 'users/10', fields: ['name', 'photo'] }
 ```
 
-If you need to define only `name` parameters, you can use shortcut:
+If you need to define only `channel` parameters, you can use shortcut:
 
 ```js
 module.exports = subscribe(({ id }) => `users/${ id }`)(User)
