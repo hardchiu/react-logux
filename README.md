@@ -41,16 +41,18 @@ You can use this properties to define subscription parameters.
 ```js
 const subscribe = require('react-logux/subscribe')
 
-class User extends React.Component {
+class Users extends React.Component {
   …
 }
 
-module.exports = subscribe(({ id }) => {
-  return { channel: `users/${ id }`, fields: ['name', 'photo'] }
+module.exports = subscribe(({ users }) => {
+  return users.map(id => {
+    return { channel: `users/${ id }`, fields: ['name', 'photo'] }
+  })
 })(User)
 ```
 
-In this example, `<User id="10" />` will send this action to server:
+In this example, `<Users users=[10, 15] />` will send this action to server:
 
 ```js
 { type: 'logux/subscribe', channel: 'users/10', fields: ['name', 'photo'] }
