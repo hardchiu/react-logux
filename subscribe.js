@@ -1,4 +1,5 @@
 var React = require('react')
+var connect = require('react-redux').connect
 
 function merge (to, from) {
   for (var i in from) to[i] = from[i]
@@ -89,7 +90,8 @@ function subscribe (subscriber, options) {
     Object.setPrototypeOf(SubscribeComponent, React.Component)
 
     SubscribeComponent.prototype.componentWillMount = function () {
-      this.subscriptions = getSubscriptions(subscriber, this.props)
+      this.subscriptions =
+        !this.props.loguxStarted ? [] : getSubscriptions(subscriber, this.props)
 
       var store = this.context[storeKey]
       this.subscriptions.forEach(function (i) {
@@ -98,9 +100,13 @@ function subscribe (subscriber, options) {
     }
 
     SubscribeComponent.prototype.componentWillReceiveProps = function (props) {
+      if (this.props.loguxStarted === props.loguxStarted) {
+        return
+      }
+
       var store = this.context[storeKey]
       var prev = this.subscriptions
-      var next = getSubscriptions(subscriber, props)
+      var next = !props.loguxStarted ? [] : getSubscriptions(subscriber, props)
 
       prev.forEach(function (i) {
         if (!isInclude(next, i)) {
@@ -128,7 +134,12 @@ function subscribe (subscriber, options) {
       return React.createElement(Wrapped, this.props)
     }
 
-    return SubscribeComponent
+    function mapStateToProps (state) {
+      return { loguxStarted: state.logux && state.logux.started }
+    }
+    return connect(mapStateToProps, null, null, { pure: true })(
+      SubscribeComponent
+    )
   }
 }
 
