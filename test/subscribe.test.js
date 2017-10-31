@@ -15,7 +15,7 @@ function createComponent (content) {
     userId: false
   })
   var store = createStore(function () {
-    return { }
+    return { logux: { started: true } }
   })
   var component = renderer.create(h(Provider, { store: store }, content))
   component.client = store.client
@@ -37,7 +37,7 @@ it('generates component name', function () {
   var SubscribeUser5 = subscribe(function () {
     return 'users/10'
   })(User5)
-  expect(SubscribeUser5.displayName).toEqual('SubscribeUser5')
+  expect(SubscribeUser5.displayName).toEqual('Connect(SubscribeUser5)')
 
   // eslint-disable-next-line es5/no-classes
   class User6 extends React.Component {
@@ -46,12 +46,12 @@ it('generates component name', function () {
   var SubscribeUser6 = subscribe(function () {
     return 'users/10'
   })(User6)
-  expect(SubscribeUser6.displayName).toEqual('SubscribeUser6')
+  expect(SubscribeUser6.displayName).toEqual('Connect(SubscribeUser6)')
 
   var SubscribeNameless = subscribe(function () {
     return 'users/10'
   })(function () { })
-  expect(SubscribeNameless.displayName).toEqual('SubscribeComponent')
+  expect(SubscribeNameless.displayName).toEqual('Connect(SubscribeComponent)')
 })
 
 it('passes properties', function () {
