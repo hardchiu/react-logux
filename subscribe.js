@@ -100,13 +100,17 @@ function subscribe (subscriber, options) {
     }
 
     SubscribeComponent.prototype.componentWillReceiveProps = function (props) {
-      if (this.props.loguxStarted === props.loguxStarted) {
-        return
-      }
-
+      var next = !props.loguxStarted ? [] : getSubscriptions(subscriber, props)
       var store = this.context[storeKey]
       var prev = this.subscriptions
-      var next = !props.loguxStarted ? [] : getSubscriptions(subscriber, props)
+      var hasChanged = next.length !== prev.length ||
+        prev.reduce(function (changed, subscription, i) {
+          return changed || subscription[1] !== next[i][1]
+        }, false)
+
+      if (!hasChanged) {
+        return
+      }
 
       prev.forEach(function (i) {
         if (!isInclude(next, i)) {
